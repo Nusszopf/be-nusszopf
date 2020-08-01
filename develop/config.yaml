@@ -1,0 +1,10 @@
+version: 2
+# endpoint: https://dev-nusszopf.herokuapp.com/
+# endpoint: https://nusszopf.herokuapp.com/
+endpoint: http://localhost:8080
+metadata_directory: metadata
+actions:
+  kind: synchronous
+  handler_webhook_baseurl: http://localhost:3000
+
+# admin_secret: via console `yarn console --admin-secret=XXXXX`
