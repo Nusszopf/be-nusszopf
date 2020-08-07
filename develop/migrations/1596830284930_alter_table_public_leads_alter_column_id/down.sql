@@ -1,0 +1,1 @@
+ALTER TABLE ONLY "public"."leads" ALTER COLUMN "id" DROP DEFAULT;
