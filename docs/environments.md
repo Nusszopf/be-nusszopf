@@ -33,7 +33,7 @@ All changes have to be logged, to be able to migrate the changes to other enviro
 
 1. Create a new branch from develop
 2. Log metadata and migrations
-3. Squash if needed
+3. Squash migrations (only use hasura-cli, if you want to squash)
 4. Create a pull-request
 5. Review & Testing
 6. Merge pull-request into develop -> automatically updates staging environment on heroku
