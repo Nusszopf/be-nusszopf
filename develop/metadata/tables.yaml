@@ -7,7 +7,7 @@
       manual_configuration:
         remote_table:
           schema: public
-          name: user
+          name: users
         column_mapping:
           email: email
   select_permissions:
@@ -17,47 +17,32 @@
       - hasConfirmed
       - id
       filter:
-        user:
-          id:
-            _eq: X-Hasura-User-Id
-  update_permissions:
-  - role: user
-    permission:
-      columns:
-      - name
-      filter:
-        user:
-          id:
-            _eq: X-Hasura-User-Id
-      check: null
+        _exists:
+          _where:
+            user:
+              id:
+                _eq: X-Hasura-User-Id
+          _table:
+            schema: public
+            name: leads
 - table:
     schema: public
-    name: user
+    name: users
   object_relationships:
   - name: lead
     using:
-      foreign_key_constraint_on: email
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: leads
+        column_mapping:
+          email: email
   select_permissions:
   - role: user
     permission:
       columns:
       - email
       - id
-      filter:
-        id:
-          _eq: X-Hasura-User-Id
-  update_permissions:
-  - role: user
-    permission:
-      columns:
-      - email
-      filter:
-        id:
-          _eq: X-Hasura-User-Id
-      check: null
-  delete_permissions:
-  - role: user
-    permission:
       filter:
         id:
           _eq: X-Hasura-User-Id
