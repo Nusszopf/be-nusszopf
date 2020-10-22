@@ -1,3 +1,63 @@
 - table:
     schema: public
     name: leads
+  object_relationships:
+  - name: user
+    using:
+      manual_configuration:
+        remote_table:
+          schema: public
+          name: user
+        column_mapping:
+          email: email
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - hasConfirmed
+      - id
+      filter:
+        user:
+          id:
+            _eq: X-Hasura-User-Id
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - name
+      filter:
+        user:
+          id:
+            _eq: X-Hasura-User-Id
+      check: null
+- table:
+    schema: public
+    name: user
+  object_relationships:
+  - name: lead
+    using:
+      foreign_key_constraint_on: email
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - email
+      - id
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - email
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        id:
+          _eq: X-Hasura-User-Id

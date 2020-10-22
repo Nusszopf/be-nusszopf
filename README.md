@@ -1,4 +1,4 @@
-# Hasura Backend
+# Nusszopf Backend
 
 Local instance of hasura to manage and version changes for multiple environments.
 
