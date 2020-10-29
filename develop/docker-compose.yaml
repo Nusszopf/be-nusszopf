@@ -18,7 +18,8 @@ services:
     restart: always
     environment:
       # CUSTOM
-      ACCOUNT_ACTION_URL: http://host.docker.internal:3000/api/events/account
+      ACCOUNT_ACTION_URL: ${ACCOUNT_ACTION_URL}
+      EVENT_SECRET: ${EVENT_SECRET}
       # DEV
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
       HASURA_GRAPHQL_ADMIN_SECRET: ${HASURA_GRAPHQL_ADMIN_SECRET}

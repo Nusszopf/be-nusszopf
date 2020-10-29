@@ -64,5 +64,7 @@
       timeout_sec: 60
     webhook_from_env: ACCOUNT_ACTION_URL
     headers:
-    - value: "12345"
-      name: secret
+    - name: secret
+      value_from_env: EVENT_SECRET
+    - value: delete
+      name: event
