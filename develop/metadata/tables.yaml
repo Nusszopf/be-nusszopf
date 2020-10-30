@@ -10,6 +10,26 @@
           name: users
         column_mapping:
           email: email
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        _exists:
+          _where:
+            user:
+              id:
+                _eq: X-Hasura-User-Id
+          _table:
+            schema: public
+            name: leads
+      columns:
+      - id
+      - name
+      - email
+      - hasConfirmed
+      - created_at
+      - privacy
+      backend_only: false
   select_permissions:
   - role: user
     permission:
@@ -25,6 +45,50 @@
           _table:
             schema: public
             name: leads
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - hasConfirmed
+      filter:
+        _exists:
+          _where:
+            user:
+              id:
+                _eq: X-Hasura-User-Id
+          _table:
+            schema: public
+            name: leads
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        _exists:
+          _where:
+            user:
+              id:
+                _eq: X-Hasura-User-Id
+          _table:
+            schema: public
+            name: leads
+  event_triggers:
+  - name: sync_leads_sendgrid
+    definition:
+      enable_manual: false
+      delete:
+        columns: '*'
+      update:
+        columns:
+        - hasConfirmed
+    retry_conf:
+      num_retries: 3
+      interval_sec: 10
+      timeout_sec: 60
+    webhook_from_env: LEADS_TRIGGER_URL
+    headers:
+    - name: secret
+      value_from_env: EVENT_SECRET
 - table:
     schema: public
     name: users
@@ -62,9 +126,7 @@
       num_retries: 3
       interval_sec: 10
       timeout_sec: 60
-    webhook_from_env: ACCOUNT_ACTION_URL
+    webhook_from_env: USERS_TRIGGER_URL
     headers:
     - name: secret
       value_from_env: EVENT_SECRET
-    - value: delete
-      name: event

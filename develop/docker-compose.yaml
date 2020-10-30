@@ -19,6 +19,8 @@ services:
     environment:
       # CUSTOM
       ACCOUNT_ACTION_URL: ${ACCOUNT_ACTION_URL}
+      USERS_TRIGGER_URL: ${USERS_TRIGGER_URL}
+      LEADS_TRIGGER_URL: ${LEADS_TRIGGER_URL}
       EVENT_SECRET: ${EVENT_SECRET}
       # DEV
       HASURA_GRAPHQL_DATABASE_URL: postgres://postgres:postgrespassword@postgres:5432/postgres
