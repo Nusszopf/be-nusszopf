@@ -14,14 +14,9 @@
   - role: user
     permission:
       check:
-        _exists:
-          _where:
-            user:
-              id:
-                _eq: X-Hasura-User-Id
-          _table:
-            schema: public
-            name: leads
+        user:
+          id:
+            _eq: X-Hasura-User-Id
       columns:
       - id
       - name
@@ -34,44 +29,34 @@
   - role: user
     permission:
       columns:
+      - created_at
+      - email
       - hasConfirmed
       - id
+      - name
+      - privacy
       filter:
-        _exists:
-          _where:
-            user:
-              id:
-                _eq: X-Hasura-User-Id
-          _table:
-            schema: public
-            name: leads
+        user:
+          id:
+            _eq: X-Hasura-User-Id
   update_permissions:
   - role: user
     permission:
       columns:
+      - created_at
       - hasConfirmed
       filter:
-        _exists:
-          _where:
-            user:
-              id:
-                _eq: X-Hasura-User-Id
-          _table:
-            schema: public
-            name: leads
+        user:
+          id:
+            _eq: X-Hasura-User-Id
       check: null
   delete_permissions:
   - role: user
     permission:
       filter:
-        _exists:
-          _where:
-            user:
-              id:
-                _eq: X-Hasura-User-Id
-          _table:
-            schema: public
-            name: leads
+        user:
+          id:
+            _eq: X-Hasura-User-Id
   event_triggers:
   - name: sync_leads_sendgrid
     definition:
