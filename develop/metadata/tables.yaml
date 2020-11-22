@@ -76,6 +76,173 @@
       value_from_env: EVENT_SECRET
 - table:
     schema: public
+    name: projects
+  object_relationships:
+  - name: user
+    using:
+      foreign_key_constraint_on: user_id
+  array_relationships:
+  - name: requests
+    using:
+      foreign_key_constraint_on:
+        column: project_id
+        table:
+          schema: public
+          name: requests
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        user_id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - contact
+      - created_at
+      - description
+      - descriptionTemplate
+      - goal
+      - id
+      - location
+      - motto
+      - period
+      - team
+      - teamTemplate
+      - title
+      - user_id
+      - visibility
+      backend_only: false
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - id
+      - title
+      - goal
+      - description
+      - descriptionTemplate
+      - location
+      - period
+      - team
+      - teamTemplate
+      - motto
+      - visibility
+      - contact
+      - user_id
+      - created_at
+      filter: {}
+  - role: user
+    permission:
+      columns:
+      - id
+      - title
+      - goal
+      - description
+      - descriptionTemplate
+      - location
+      - period
+      - team
+      - teamTemplate
+      - motto
+      - visibility
+      - contact
+      - user_id
+      - created_at
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - contact
+      - description
+      - descriptionTemplate
+      - goal
+      - location
+      - motto
+      - period
+      - team
+      - teamTemplate
+      - title
+      - user_id
+      - visibility
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        user_id:
+          _eq: X-Hasura-User-Id
+- table:
+    schema: public
+    name: requests
+  object_relationships:
+  - name: project
+    using:
+      foreign_key_constraint_on: project_id
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        project:
+          user_id:
+            _eq: X-Hasura-User-Id
+      columns:
+      - id
+      - title
+      - description
+      - descriptionTemplate
+      - category
+      - created_at
+      - project_id
+      backend_only: false
+  select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - id
+      - title
+      - description
+      - descriptionTemplate
+      - category
+      - created_at
+      - project_id
+      filter: {}
+  - role: user
+    permission:
+      columns:
+      - descriptionTemplate
+      - category
+      - description
+      - title
+      - project_id
+      - created_at
+      - id
+      filter: {}
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - category
+      - description
+      - descriptionTemplate
+      - title
+      - project_id
+      filter:
+        project:
+          user_id:
+            _eq: X-Hasura-User-Id
+      check: null
+  delete_permissions:
+  - role: user
+    permission:
+      filter:
+        project:
+          user_id:
+            _eq: X-Hasura-User-Id
+- table:
+    schema: public
     name: users
   object_relationships:
   - name: lead
@@ -86,6 +253,14 @@
           name: leads
         column_mapping:
           email: email
+  array_relationships:
+  - name: projects
+    using:
+      foreign_key_constraint_on:
+        column: user_id
+        table:
+          schema: public
+          name: projects
   select_permissions:
   - role: user
     permission:
