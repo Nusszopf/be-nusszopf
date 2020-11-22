@@ -115,21 +115,23 @@
   - role: anonymous
     permission:
       columns:
-      - id
-      - title
-      - goal
-      - description
       - descriptionTemplate
       - location
       - period
-      - team
       - teamTemplate
-      - motto
-      - visibility
       - contact
+      - description
+      - goal
+      - id
+      - motto
+      - team
+      - title
       - user_id
+      - visibility
       - created_at
-      filter: {}
+      filter:
+        visibility:
+          _eq: public
   - role: user
     permission:
       columns:
@@ -147,7 +149,12 @@
       - contact
       - user_id
       - created_at
-      filter: {}
+      filter:
+        _or:
+        - visibility:
+            _eq: public
+        - user_id:
+            _eq: X-Hasura-User-Id
   update_permissions:
   - role: user
     permission:
@@ -174,6 +181,20 @@
       filter:
         user_id:
           _eq: X-Hasura-User-Id
+  event_triggers:
+  - name: clean_up_deleted_project
+    definition:
+      enable_manual: false
+      delete:
+        columns: '*'
+    retry_conf:
+      num_retries: 3
+      interval_sec: 10
+      timeout_sec: 60
+    webhook_from_env: PROJECTS_TRIGGER_URL
+    headers:
+    - name: secret
+      value_from_env: EVENT_SECRET
 - table:
     schema: public
     name: requests
