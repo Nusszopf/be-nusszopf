@@ -13,7 +13,7 @@ The repository contains all the logic for search-api, graphql-api and auth0-rule
 ### Hosting
 
 - Heroku: Hasura environmen (stage/prod)
-- DigitalOceans: Meilisearch environment (stage/prod)
+- DigitalOcean: Meilisearch environment (stage/prod)
 - Vercel: Frontend environment, serverless functions and domain `nusszopf.org`
 
 ### Services
