@@ -1,7 +1,7 @@
 FROM hasura/graphql-engine:v1.3.3.cli-migrations-v2
 
-COPY ./develop/migrations /hasura-migrations
-COPY ./develop/metadata /hasura-metadata
+COPY ./hasura/migrations /hasura-migrations
+COPY ./hasura/metadata /hasura-metadata
 
 CMD graphql-engine \
     --database-url $DATABASE_URL \

@@ -1,0 +1,12 @@
+{
+  "name": "search-nusszopf",
+  "version": "1.0.0",
+  "description": "Local instance of meilisearch",
+  "repository": "git@github.com:nusszopf/be-nusszopf.git",
+  "author": "schwamic <schwarz.michael@posteo.net>",
+  "license": "GNU General Public License v3.0",
+  "private": true,
+  "scripts": {
+    "docker:up": "docker-compose up -d"
+  }
+}

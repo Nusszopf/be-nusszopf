@@ -1,25 +1,40 @@
 # Nusszopf Backend
 
-Local instance of hasura to manage and version changes for multiple environments.
-
-## Docs
-
-- [Environments](./docs/environments.md)
-- [Export GraphQL Schema](./docs/schema.md)
-- [101](./docs/101.md)
+The repository contains all the logic for search-api, graphql-api and auth0-rules. It also provides scripts to start `meilisearch` and `hasura` via docker locally.
 
 ## Cloud & Services
 
-![cloud](./docs/images/nz-cloud-architecture.png)
+### Hosting
 
-### 1. Heroku
+- Heroku: Hasura environmen (stage/prod)
+- DigitalOceans: Meilisearch environment (stage/prod)
+- Vercel: Frontend environment, serverless functions and domain `nusszopf.org`
 
-Heroku is used to host the backend-container-environments for production and staging.
+### Services
 
-### 2. Vercel
+- Auth0: Authentication
+- SendGrid: E-Mails
+- MailBox: Provider for `nusszopf.org` mails
 
-Vercel is used to host the frontend web-applications and all serverless functions for custom backend-logic.
+### Analytics
 
-### 3. SendGrid
+- VisitorAnalytics
+- Logging/Monitoring (wip)
 
-SendGrid is used for e-mail-marketing.
+## Docs
+
+### Hasura
+
+- [Environments](./docs/hasura/environments.md)
+- [Export GraphQL Schema](./docs/hasura/schema.md)
+- [101](./docs/hasura/101.md)
+
+### Meilisearch
+
+- [Environments](./docs/meilisearch/environments.md)
+- [Setup](./docs/meilisearch/setup.md)
+- [Considerations](./docs/meilisearch/considerations.md)
+
+### Auth0
+
+- [Rules](./docs/auth0/rules.md)

@@ -1,4 +1,4 @@
-# GraphQL-Schema
+# Hasura – GraphQL-Schema
 
 Instructions to share, introspect or export the GraphQL schema: [hasura documentation](https://hasura.io/docs/1.0/graphql/manual/schema/export-graphql-schema.html).
 
