@@ -269,11 +269,17 @@
           schema: public
           name: projects
   select_permissions:
+  - role: anonymous
+    permission:
+      columns:
+      - name
+      filter: {}
   - role: user
     permission:
       columns:
       - email
       - id
+      - name
       filter:
         id:
           _eq: X-Hasura-User-Id

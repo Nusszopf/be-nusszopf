@@ -1,4 +1,4 @@
-# Environments
+# Hasura – Environments
 
 Multipe environments managed via [Heroku Pipelines](https://devcenter.heroku.com/articles/pipelines):
 
