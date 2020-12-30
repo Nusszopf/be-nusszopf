@@ -14,7 +14,7 @@ function syncWithHasura(user, context, cb) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-hasura-admin-secret": "Mi2w4pKIHQngrqHES6MqubryQZadmD",
+        "x-hasura-admin-secret": "my-admin-secret", // todo: replace 'my-admin-secret'
       },
       body: JSON.stringify({ query, variables: { userId, userName, userEmail: user.email } }),
     };
@@ -26,7 +26,8 @@ function syncWithHasura(user, context, cb) {
       })
       .then(() => {
         if (user.user_metadata && user.user_metadata.newsletter === "true") {
-          const token = jwt.sign({ id: userId, name: userName, email: user.email }, "XWWtPQA6NLgAOj858lyyfOaIUdzD5O", {
+          // todo: replace 'my-email-secret'
+          const token = jwt.sign({ id: userId, name: userName, email: user.email }, "my-email-secret", {
             expiresIn: "1d",
           });
           return fetch("https://nusszopf.org/api/newsletter", {
