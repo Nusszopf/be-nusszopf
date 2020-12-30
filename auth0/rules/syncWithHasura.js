@@ -5,6 +5,7 @@ function syncWithHasura(user, context, cb) {
     cb(null, user, context);
   } else {
     const userId = /.+\|.+/g.test(user.user_id) ? user.user_id : `auth0|${user.user_id}`;
+    const userName = user?.username ?? user?.name ?? user?.nickname ?? user.email.split("@")[0];
     const query = `
 		mutation($userId:String!,$userEmail:String!){
 			insert_users(objects:[{id:$userId,email: $userEmail}],
@@ -15,7 +16,7 @@ function syncWithHasura(user, context, cb) {
         "Content-Type": "application/json",
         "x-hasura-admin-secret": "Mi2w4pKIHQngrqHES6MqubryQZadmD",
       },
-      body: JSON.stringify({ query, variables: { userId: userId, userEmail: user.email } }),
+      body: JSON.stringify({ query, variables: { userId, userName, userEmail: user.email } }),
     };
     fetch("https://nz-hasura-prod.herokuapp.com/v1/graphql", options)
       .then(() => {
@@ -25,11 +26,9 @@ function syncWithHasura(user, context, cb) {
       })
       .then(() => {
         if (user.user_metadata && user.user_metadata.newsletter === "true") {
-          const token = jwt.sign(
-            { id: userId, name: user.username, email: user.email },
-            "XWWtPQA6NLgAOj858lyyfOaIUdzD5O",
-            { expiresIn: "1d" }
-          );
+          const token = jwt.sign({ id: userId, name: userName, email: user.email }, "XWWtPQA6NLgAOj858lyyfOaIUdzD5O", {
+            expiresIn: "1d",
+          });
           return fetch("https://nusszopf.org/api/newsletter", {
             method: "POST",
             headers: { "content-type": "application/json" },
