@@ -5,10 +5,10 @@ function syncWithHasura(user, context, cb) {
     cb(null, user, context);
   } else {
     const userId = /.+\|.+/g.test(user.user_id) ? user.user_id : `auth0|${user.user_id}`;
-    const userName = user?.username ?? user?.name ?? user?.nickname ?? user.email.split("@")[0];
-    const query = `
-		mutation($userId:String!,$userEmail:String!){
-			insert_users(objects:[{id:$userId,email: $userEmail}],
+    const userName = user.username ? user.username : user.name ? user.name.split("@")[0] : user.nickname ? user.nickname.split("@")[0] : user.email.split("@")[0];
+    const query = `  
+		mutation($userId:String!,$userName:String!,$userEmail:String!){
+			insert_users(objects:[{id:$userId,name:$userName,email:$userEmail}],
 			on_conflict:{constraint: user_pkey,update_columns:[]}){affected_rows}}`;
     const options = {
       method: "POST",
