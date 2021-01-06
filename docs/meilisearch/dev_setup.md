@@ -7,14 +7,12 @@
 
 ## CORS
 
-- Allow CORS on server side via nginx-cors-proxy: [code example](https://gist.github.com/iki/1247cd182acd1aa3ee4876acb7263def)
-- Disable cors in safari/firefox/chrome
-  - safari: via menu: "Develop/Disable Cross-Origin Restrictions"
-  - chrome: add extension: [allow-cors-access-control](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf)
-  - firefox: add extension: [cors-everywhere](https://addons.mozilla.org/en-US/firefox/addon/cors-everywhere/)
+- [nginx-cors-proxy with docker-compose](https://gist.github.com/iki/1247cd182acd1aa3ee4876acb7263def)
+- [enable-cors.org](https://enable-cors.org/server_nginx.html)
+- additional header to enable-cors: `Access-Control-Allow-Headers X-Meili-Api-Key,Access-Control-Allow-Origin,...`
+- additional header to enable-cors: `Access-Control-Allow-Credentials true;`
 
 ## Usage
 
 1. Run `yarn docker:up` to start server
-2. Enable CORS in the browser (maybe reload needed)
-3. HTTP-Request against `http:127.0.0.1:8000`
+2. HTTP-Request against `http:127.0.0.1:8000`
