@@ -12,6 +12,10 @@
 - additional header to enable-cors: `Access-Control-Allow-Headers X-Meili-Api-Key,Access-Control-Allow-Origin,...`
 - additional header to enable-cors: `Access-Control-Allow-Credentials true;`
 
+## Init
+
+Have a look at [prod_setup: custom-step-3](./prod_setup.md)
+
 ## Usage
 
 1. Run `yarn docker:up` to start server

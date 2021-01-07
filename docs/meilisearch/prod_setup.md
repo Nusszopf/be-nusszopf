@@ -48,6 +48,14 @@ Enable CORS:
 - Add a firewall, as described in the DigitalOcean Tutorial: [Video](https://www.youtube.com/watch?v=gwu313WjquM&list=PLYxzS__5yYQk7h6aoN5_rvvvC8WUMxAaB&index=13)
 - Add alert policy (monitoring): cpu above 80% for 5min for all droplets
 
+### Custom Step 3
+
+Init Meilisearch via Postman http-request:
+
+1. Set Header `X-Meili-API-Key` (use private-key)
+2. Create the index `items`
+3. Update ranking-rules (`[..., desc(created_at)]`)
+
 ## Update Meilisearch Instance (cURL)
 
 - [Meilisearch Guide](https://docs.meilisearch.com/guides/advanced_guides/installation.html#updating-meilisearch)
