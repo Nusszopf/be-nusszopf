@@ -29,18 +29,6 @@ The repository contains all the logic for search-api, graphql-api and auth0-rule
 
 ## Docs
 
-### Hasura
-
-- [Environments](./docs/hasura/environments.md)
-- [Export GraphQL Schema](./docs/hasura/schema.md)
-- [101](./docs/hasura/101.md)
-
-### Meilisearch
-
-- [Environments](./docs/meilisearch/environments.md)
-- [Setup](./docs/meilisearch/setup.md)
-- [Considerations](./docs/meilisearch/considerations.md)
-
-### Auth0
-
-- [Rules](./docs/auth0/rules.md)
+- [Auth0](./docs/auth0/rules.md)
+- [Hasura](./docs/hasura)
+- [Meilisearch](./docs/meilisearch)

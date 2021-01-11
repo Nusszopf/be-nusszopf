@@ -32,10 +32,29 @@ Host droplet-ipv4
 Meilisearch instance is now production-ready! For now you have to add the public-key to each request and the GUI of Meilisearch is now no longer visible, only the API can be used.
 Check: `https://search.dev.nusszopf.org/indexes`
 
-### Custom Step
+### Custom Step 1
+
+Enable CORS:
+
+1. Edit nginx.conf (etc/nginx/sites-enabled/meilisearch):
+   - code [enable-cors.org](https://enable-cors.org/server_nginx.html)
+   - additional header `Access-Control-Allow-Headers X-Meili-Api-Key,Access-Control-Allow-Origin,...`
+   - additional header `Access-Control-Allow-Credentials true;`
+2. Run `nginx -t` to make sure you have no syntax errors
+3. Restart `systemctl restart nginx`
+
+### Custom Step 2
 
 - Add a firewall, as described in the DigitalOcean Tutorial: [Video](https://www.youtube.com/watch?v=gwu313WjquM&list=PLYxzS__5yYQk7h6aoN5_rvvvC8WUMxAaB&index=13)
 - Add alert policy (monitoring): cpu above 80% for 5min for all droplets
+
+### Custom Step 3
+
+Init Meilisearch via Postman http-request:
+
+1. Set Header `X-Meili-API-Key` (use private-key)
+2. Create the index `items`
+3. Update ranking-rules (`[..., desc(created_at)]`)
 
 ## Update Meilisearch Instance (cURL)
 
