@@ -54,11 +54,22 @@ Init Meilisearch via Postman http-request:
 
 1. Set Header `X-Meili-API-Key` (use private-key)
 2. Create the index `items`
-3. Update ranking-rules (`[..., desc(created_at)]`)
 
-## Update Meilisearch Instance (cURL)
+   ```json
+   {
+     "uid": "items",
+     "primaryKey": "itemsId"
+   }
+   ```
 
-- [Meilisearch Guide](https://docs.meilisearch.com/guides/advanced_guides/installation.html#updating-meilisearch)
+3. Update ranking-rules:
+
+   - get ranking rules first
+   - [update ranking rules](https://docs.meilisearch.com/references/ranking_rules.html#update-ranking-rules)
+
+   ```json
+   [current_ranking_rules, desc(created_at)]
+   ```
 
 ## Links
 
