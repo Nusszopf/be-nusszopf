@@ -321,11 +321,21 @@
         table:
           schema: public
           name: projects
+  insert_permissions:
+  - role: user
+    permission:
+      check:
+        id:
+          _eq: X-Hasura-User-Id
+      columns:
+      - picture
+      backend_only: false
   select_permissions:
   - role: anonymous
     permission:
       columns:
       - name
+      - picture
       filter: {}
   - role: user
     permission:
@@ -333,9 +343,19 @@
       - email
       - id
       - name
+      - picture
       filter:
         id:
           _eq: X-Hasura-User-Id
+  update_permissions:
+  - role: user
+    permission:
+      columns:
+      - picture
+      filter:
+        id:
+          _eq: X-Hasura-User-Id
+      check: null
   delete_permissions:
   - role: user
     permission:
