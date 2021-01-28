@@ -605,6 +605,29 @@
             "value_from_env": "EVENT_SECRET"
           }
         ]
+      },
+      {
+        "name": "clean_up_users_digitalocean",
+        "definition": {
+          "enable_manual": false,
+          "update": {
+            "columns": [
+              "picture"
+            ]
+          }
+        },
+        "retry_conf": {
+          "num_retries": 3,
+          "interval_sec": 10,
+          "timeout_sec": 60
+        },
+        "webhook_from_env": "USERS_TRIGGER_URL",
+        "headers": [
+          {
+            "name": "secret",
+            "value_from_env": "EVENT_SECRET"
+          }
+        ]
       }
     ]
   },
