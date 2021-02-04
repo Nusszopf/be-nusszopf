@@ -176,6 +176,7 @@
             "team",
             "teamTemplate",
             "title",
+            "updated_at",
             "user_id",
             "visibility"
           ],
@@ -188,20 +189,21 @@
         "role": "anonymous",
         "permission": {
           "columns": [
+            "id",
+            "title",
+            "goal",
+            "description",
             "descriptionTemplate",
             "location",
             "period",
-            "teamTemplate",
-            "contact",
-            "description",
-            "goal",
-            "id",
-            "motto",
             "team",
-            "title",
-            "user_id",
+            "teamTemplate",
+            "motto",
             "visibility",
-            "created_at"
+            "contact",
+            "user_id",
+            "created_at",
+            "updated_at"
           ],
           "filter": {
             "visibility": {
@@ -214,20 +216,21 @@
         "role": "user",
         "permission": {
           "columns": [
-            "id",
-            "title",
-            "goal",
-            "description",
             "descriptionTemplate",
             "location",
             "period",
-            "team",
             "teamTemplate",
-            "motto",
-            "visibility",
             "contact",
+            "description",
+            "goal",
+            "id",
+            "motto",
+            "team",
+            "title",
             "user_id",
-            "created_at"
+            "visibility",
+            "created_at",
+            "updated_at"
           ],
           "filter": {
             "_or": [
@@ -353,13 +356,14 @@
             }
           },
           "columns": [
-            "id",
-            "title",
-            "description",
-            "descriptionTemplate",
             "category",
             "created_at",
-            "project_id"
+            "description",
+            "descriptionTemplate",
+            "id",
+            "project_id",
+            "title",
+            "updated_at"
           ],
           "backend_only": false
         }
@@ -370,13 +374,14 @@
         "role": "anonymous",
         "permission": {
           "columns": [
-            "id",
-            "title",
-            "description",
-            "descriptionTemplate",
             "category",
             "created_at",
-            "project_id"
+            "description",
+            "descriptionTemplate",
+            "id",
+            "project_id",
+            "title",
+            "updated_at"
           ],
           "filter": {}
         }
@@ -385,13 +390,14 @@
         "role": "user",
         "permission": {
           "columns": [
-            "descriptionTemplate",
             "category",
-            "description",
-            "title",
-            "project_id",
             "created_at",
-            "id"
+            "description",
+            "descriptionTemplate",
+            "id",
+            "project_id",
+            "title",
+            "updated_at"
           ],
           "filter": {}
         }
