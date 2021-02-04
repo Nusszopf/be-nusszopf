@@ -1,16 +1,14 @@
 {
   "name": "hasura-nusszopf",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Local instance of hasura to manage and version changes for multiple environments",
   "repository": "git@github.com:nusszopf/be-nusszopf.git",
   "author": "schwamic <schwarz.michael@posteo.net>",
   "license": "GNU General Public License v3.0",
   "private": true,
   "scripts": {
-    "console": "hasura console",
     "docker:up": "docker-compose up",
-    "docker:down": "docker-compose down",
-    "docker:ps": "docker-compose ps"
+    "console": "hasura console"
   },
   "dependencies": {
     "hasura-cli": "1.3.3"

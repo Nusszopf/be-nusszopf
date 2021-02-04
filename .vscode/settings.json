@@ -3,6 +3,7 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": false,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontFamily": "Monoflow, Menlo, Monaco, 'Courier New', monospace",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
