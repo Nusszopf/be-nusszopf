@@ -266,7 +266,6 @@
             "team",
             "teamTemplate",
             "title",
-            "user_id",
             "visibility"
           ],
           "filter": {
@@ -314,7 +313,7 @@
               "team",
               "title",
               "visibility",
-              "created_at"
+              "updated_at"
             ]
           }
         },
@@ -358,14 +357,14 @@
             }
           },
           "columns": [
-            "category",
-            "created_at",
-            "description",
             "descriptionTemplate",
-            "id",
+            "category",
+            "description",
             "project_id",
             "title",
-            "updated_at"
+            "created_at",
+            "updated_at",
+            "id"
           ],
           "backend_only": false
         }
@@ -415,8 +414,7 @@
             "category",
             "description",
             "descriptionTemplate",
-            "title",
-            "project_id"
+            "title"
           ],
           "filter": {
             "project": {
@@ -459,8 +457,7 @@
               "descriptionTemplate",
               "category",
               "description",
-              "title",
-              "created_at"
+              "title"
             ]
           }
         },

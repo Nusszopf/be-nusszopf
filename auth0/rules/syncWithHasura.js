@@ -4,6 +4,10 @@ function syncWithHasura(user, context, cb) {
   if (user.app_metadata && user.app_metadata.synced_with_hasura) {
     cb(null, user, context);
   } else {
+    const isTestUser = user.user_metadata && user.user_metadata.isTestUser === "true";
+    const hasuraUrl = isTestUser ? "https://nz-hasura-stage.herokuapp.com/v1/graphql" : "https://nz-hasura-prod.herokuapp.com/v1/graphql";
+    const hasuraSecret = isTestUser ? "<hasura-stage-secret>" : "<hasura-prod-secret>"; // todo: replace '<hasura-<env>-secret>'
+    const newsletterUrl = isTestUser ? "https://web.dev.nusszopf.org/api/newsletter" : "https://nusszopf.org/api/newsletter";
     const userId = /.+\|.+/g.test(user.user_id) ? user.user_id : `auth0|${user.user_id}`;
     const userName = user.username ? user.username : user.name ? user.name.split("@")[0] : user.nickname ? user.nickname.split("@")[0] : user.email.split("@")[0];
     const query = `
@@ -15,11 +19,11 @@ function syncWithHasura(user, context, cb) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "x-hasura-admin-secret": "my-admin-secret", // todo: replace 'my-admin-secret'
+        "x-hasura-admin-secret": hasuraSecret,
       },
       body: JSON.stringify({ query, variables: { userId, userName, userEmail: user.email } }),
     };
-    fetch("https://nz-hasura-prod.herokuapp.com/v1/graphql", options)
+    fetch(hasuraUrl, options)
       .then(() => {
         user.app_metadata = user.app_metadata || {};
         user.app_metadata.synced_with_hasura = true;
@@ -27,11 +31,11 @@ function syncWithHasura(user, context, cb) {
       })
       .then(() => {
         if (user.user_metadata && user.user_metadata.newsletter === "true") {
-          // todo: replace 'my-email-secret'
-          const token = jwt.sign({ id: userId, name: userName, email: user.email }, "my-email-secret", {
+          // todo: replace '<my-email-secret>'
+          const token = jwt.sign({ id: userId, name: userName, email: user.email }, "<my-email-secret>", {
             expiresIn: "1d",
           });
-          return fetch("https://nusszopf.org/api/newsletter", {
+          return fetch(newsletterUrl, {
             method: "POST",
             headers: { "content-type": "application/json" },
             body: JSON.stringify({ token, action: "auth0SyncHasura" }),
