@@ -6,18 +6,19 @@
 
 - update `docker-compose`
 - delete `data.ms`
-- Reindex
+- create index and update ranking-rules
 
 ## Stage/Prod
 
 [meili-guide](https://github.com/meilisearch/MeiliSearch/discussions/1187)
 
+0. Connect to digitalocean via SSH: `ssh root@<ipv4>`
 1. [Create a Dump via Postman](https://docs.meilisearch.com/guides/advanced_guides/snapshots_and_dumps.html#creating-a-dump)
 2. `systemctl stop meilisearch`
 3. `rm -rf ../data.ms`
 4. `curl -L https://install.meilisearch.com | sh`
-5. `mv ./meilisearch /usr/bin/`
-6. [Importing previously created Dump](https://docs.meilisearch.com/guides/advanced_guides/snapshots_and_dumps.html#import-a-dump) (`/usr/bin/meilisearch --db-path /data.ms --import-dump /dumps/<id>.dump`)
+5. `mv ./meilisearch ./../usr/bin/`
+6. [Importing previously created Dump](https://docs.meilisearch.com/reference/features/dumps.html#creating-a-dump) (`/usr/bin/meilisearch --db-path /data.ms --import-dump /dumps/<id>.dump`)
 7. `systemctl restart meilisearch`
 8. check via Postman: `https://search.nusszopf.org/version`
 9. check via website `https://nusszopf.org/search`
