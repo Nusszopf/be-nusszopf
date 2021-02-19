@@ -1,6 +1,6 @@
 {
   "name": "hasura-nusszopf",
-  "version": "3.1.0",
+  "version": "4.0.0",
   "description": "Local instance of hasura to manage and version changes for multiple environments",
   "repository": "git@github.com:nusszopf/be-nusszopf.git",
   "author": "schwamic <schwarz.michael@posteo.net>",
