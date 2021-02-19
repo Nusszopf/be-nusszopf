@@ -28,3 +28,7 @@
 2. Create `index`
 3. Update `ranking_rules`
 4. Upload all data to meilisearch again (todo: write script)
+
+## Scaling
+
+For now, Meilisearch can only be scaled vertically. Therefore only Dropletupgrades have an effect. On their roadmap horizontal scaling is planned, but not clear if it will be a paid feature or part of the free open-soure package.
