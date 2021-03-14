@@ -1,4 +1,6 @@
-# Currently metadata are not getting logged
+# Metadata
+
+## If metadata is not getting logged automatically
 
 1. open hasura in the browser
 2. export metadata
