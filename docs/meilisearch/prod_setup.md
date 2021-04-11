@@ -68,7 +68,7 @@ Init Meilisearch via Postman http-request:
    - [update ranking rules](https://docs.meilisearch.com/references/ranking_rules.html#update-ranking-rules)
 
    ```json
-   [current_ranking_rules, desc(created_at)]
+   [current_ranking_rules, desc(updated_at)]
    ```
 
 ## Links
