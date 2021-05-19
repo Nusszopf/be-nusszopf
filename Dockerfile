@@ -5,6 +5,7 @@ COPY ./hasura/migrations /hasura-migrations
 COPY ./hasura/metadata /hasura-metadata
 
 ENV HOME=/app
+RUN echo $HOME
 
 CMD graphql-engine \
     --database-url $DATABASE_URL \
