@@ -3,6 +3,7 @@ FROM hasura/graphql-engine:v1.3.3.cli-migrations-v2
 # Add our migrations and metadata
 COPY ./hasura/migrations /hasura-migrations
 COPY ./hasura/metadata /hasura-metadata
+WORKDIR /
 
 ENV HOME=/root
 RUN echo $HOME
