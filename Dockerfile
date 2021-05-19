@@ -4,7 +4,7 @@ FROM hasura/graphql-engine:v1.3.3.cli-migrations-v2
 COPY ./hasura/migrations /hasura-migrations
 COPY ./hasura/metadata /hasura-metadata
 
-ENV HOME=/app
+ENV HOME=/root
 RUN echo $HOME
 
 CMD graphql-engine \
