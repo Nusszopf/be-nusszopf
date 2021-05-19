@@ -6,6 +6,7 @@ COPY ./hasura/metadata /hasura-metadata
 
 ENV HOME=/root
 RUN echo $HOME
+RUN whoami
 
 CMD graphql-engine \
     --database-url $DATABASE_URL \
