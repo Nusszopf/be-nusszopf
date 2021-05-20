@@ -10,7 +10,7 @@ RUN adduser -D nzuser
 USER nzuser
 
 # Run the app. CMD is required to run on heroku
-CMD HOME = $HOME && graphql-engine \
+CMD graphql-engine \
     --database-url $DATABASE_URL \
     serve \
     --server-port $PORT
